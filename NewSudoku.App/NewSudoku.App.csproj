@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7683F5DD-B174-436F-98F0-56CCF2BFB867}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>NewSudoku.App</RootNamespace>
+    <AssemblyName>NewSudoku.App</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.5\lib\net46\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=3.3.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.5\lib\net46\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.2.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.5\lib\net46\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.8.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.5\lib\net46\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.5.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.5\lib\net46\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.1.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.5\lib\net46\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=2.1.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.5\lib\net46\Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.1.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.5\lib\net46\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\ConsoleConstants.cs" />
+    <Compile Include="Constants\NavigationConstants.cs" />
+    <Compile Include="Constants\SudokuConstants.cs" />
+    <Compile Include="Core\Commands\GameCommand.cs" />
+    <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\Game\Fasades\GamePlayFasade.cs" />
+    <Compile Include="Core\Repository\PlayerXMLRepository.cs" />
+    <Compile Include="Core\Services\Common\FileService.cs" />
+    <Compile Include="Core\Services\Common\UserService.cs" />
+    <Compile Include="Core\Services\Common\UserSessionService.cs" />
+    <Compile Include="Core\Services\ConsoleInterfaceService.cs" />
+    <Compile Include="Core\Game\ConsoleMenuNavigation.cs" />
+    <Compile Include="Core\Game\ConsoleMenuPagination.cs" />
+    <Compile Include="Core\Services\ConsoleMenuService.cs" />
+    <Compile Include="Core\Services\ConsoleNavigationService.cs" />
+    <Compile Include="Core\Services\ConsoleReaderService.cs" />
+    <Compile Include="Core\Services\ConsoleWriterService.cs" />
+    <Compile Include="Core\Factories\CommandFactory.cs" />
+    <Compile Include="Core\Factories\FIlePathFactory.cs" />
+    <Compile Include="Core\Factories\MenuNavigationStrategyFactory.cs" />
+    <Compile Include="Core\Game\Fasades\GameSetUpFasade.cs" />
+    <Compile Include="Core\Game\SudokuGridGenerator.cs" />
+    <Compile Include="Interfaces\Core\ICommand.cs" />
+    <Compile Include="Interfaces\Core\IEngine.cs" />
+    <Compile Include="Interfaces\Factories\ICommandFactory.cs" />
+    <Compile Include="Interfaces\Factories\IFilePathFactory.cs" />
+    <Compile Include="Interfaces\Fasades\IGamePlayFasade.cs" />
+    <Compile Include="Interfaces\Fasades\IGameSetUpFasade.cs" />
+    <Compile Include="Interfaces\Game\IMenuNavigation.cs" />
+    <Compile Include="Interfaces\Game\IMenuPagination.cs" />
+    <Compile Include="Interfaces\Game\ISudokuGridGenerator.cs" />
+    <Compile Include="Interfaces\Repository\IPlayerRepository.cs" />
+    <Compile Include="Interfaces\Strategies\IMenuNavigationStrategy.cs" />
+    <Compile Include="Interfaces\Factories\IMenuNavigationStrategyFactory.cs" />
+    <Compile Include="StartUp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Core\Game\Strategies\MenuNavigation\DownArrowStrategy.cs" />
+    <Compile Include="Core\Game\Strategies\MenuNavigation\UpArrowStrategy.cs" />
+    <Compile Include="Utilities\Menus\GameSelectMenuOptions.cs" />
+    <Compile Include="Utilities\Menus\MainMenuOptions.cs" />
+    <Compile Include="Utilities\Menus\AbstractMenu.cs" />
+    <Compile Include="Utilities\Menus\ReportMenuOptions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NewSudoku.Entities\NewSudoku.Entities.csproj">
+      <Project>{77addbd7-726c-4985-86a7-e469fc30eca2}</Project>
+      <Name>NewSudoku.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NewSudoku.Repository\NewSudoku.Repository.csproj">
+      <Project>{83faf2b3-49f1-46b6-a053-2c68efd20700}</Project>
+      <Name>NewSudoku.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NewSudoku.Services\NewSudoku.Services.csproj">
+      <Project>{20D6FC60-379D-4167-9516-C71D76E1480B}</Project>
+      <Name>NewSudoku.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
