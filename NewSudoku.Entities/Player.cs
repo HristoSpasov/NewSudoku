@@ -13,7 +13,6 @@
 
         public Player()
         {
-            // this.game = new Game();
         }
 
         [Key]
@@ -29,6 +28,11 @@
             {
                 return this.game;
             }
+        }
+
+        public void SetGame(Game game)
+        {
+            this.game = game;
         }
     }
 }

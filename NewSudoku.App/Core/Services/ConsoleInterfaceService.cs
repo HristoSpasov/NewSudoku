@@ -37,6 +37,11 @@
             Console.Clear();
         }
 
+        public void SetCoordinates(int positionY, int positionX)
+        {
+            Console.SetCursorPosition(positionX, positionY);
+        }
+
         private ConsoleColor parseColor(string color)
         {
             string formatedColorString = char.ToUpperInvariant(color[0]).ToString() + color.Substring(1).ToLowerInvariant();

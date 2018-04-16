@@ -5,6 +5,8 @@
     using NewSudoku.App.Core.Factories;
     using NewSudoku.App.Core.Game;
     using NewSudoku.App.Core.Game.Fasades;
+    using NewSudoku.App.Core.Game.Strategies.GamePlayNavigationStrategies;
+    using NewSudoku.App.Core.Game.Strategies.MenuNavigation;
     using NewSudoku.App.Core.Repository;
     using NewSudoku.App.Core.Services;
     using NewSudoku.App.Core.Services.Common;
@@ -13,6 +15,7 @@
     using NewSudoku.App.Interfaces.Fasades;
     using NewSudoku.App.Interfaces.Game;
     using NewSudoku.App.Interfaces.Repository;
+    using NewSudoku.App.Interfaces.Strategies;
     using NewSudoku.App.Utilities.Menus;
     using NewSudoku.Services.Interfaces;
     using Unity;
@@ -78,10 +81,23 @@
             // Factories
             dependencyContainer.RegisterType<ICommandFactory, CommandFactory>();
             dependencyContainer.RegisterType<IFilePathFactory, FilePathFactory>();
+            dependencyContainer.RegisterType<IGameFactory, GameFactory>();
+            dependencyContainer.RegisterType<IFieldFactory, FieldFactory>();
+            dependencyContainer.RegisterType<IAsciiFactoriesFactory, AsciiFactoriesFactory>();
+            dependencyContainer.RegisterType<IAsciiFactory, AsciiNumberFactory>("Number Game");
+            dependencyContainer.RegisterType<IAsciiFactory, AsciiLetterFactory>("Letter Game");
+            dependencyContainer.RegisterType<IGameNavigationStrategyFactory, GameNavigationStrategyFactory>();
 
             // Commands
             dependencyContainer.RegisterType<ICommand, GameCommand>("Letter Game");
             dependencyContainer.RegisterType<ICommand, GameCommand>("Number Game");
+
+            // Game navigation strategies
+            dependencyContainer.RegisterType<IGameNavigationStrategy, UpArrowGameStrategy>("UpArrow");
+            dependencyContainer.RegisterType<IGameNavigationStrategy, DownArrowGameStrategy>("DownArrow");
+            dependencyContainer.RegisterType<IGameNavigationStrategy, LeftArrowGameStrategy>("LeftArrow");
+            dependencyContainer.RegisterType<IGameNavigationStrategy, RightArrowGameStrategy>("RightArrow");
+
 
             // Register container
             dependencyContainer.RegisterInstance(dependencyContainer);

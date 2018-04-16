@@ -13,5 +13,7 @@
         void SetForegroundColor(string color);
 
         void Clear();
+
+        void SetCoordinates(int positionY, int positionX);
     }
 }

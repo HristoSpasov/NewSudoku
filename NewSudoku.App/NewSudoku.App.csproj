@@ -66,12 +66,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\BoardConstants.cs" />
     <Compile Include="Constants\ConsoleConstants.cs" />
+    <Compile Include="Constants\FieldConstants.cs" />
+    <Compile Include="Constants\GamePaths.cs" />
     <Compile Include="Constants\NavigationConstants.cs" />
     <Compile Include="Constants\SudokuConstants.cs" />
     <Compile Include="Core\Commands\GameCommand.cs" />
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\Factories\AsciiFactoriesFactory.cs" />
+    <Compile Include="Core\Factories\AsciiLetterFactory.cs" />
+    <Compile Include="Core\Factories\AsciiNumberFactory.cs" />
+    <Compile Include="Core\Factories\FieldFactory.cs" />
+    <Compile Include="Core\Factories\GameFactory.cs" />
+    <Compile Include="Core\Factories\GameNavigationStrategyFactory.cs" />
     <Compile Include="Core\Game\Fasades\GamePlayFasade.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayNavigationStrategies\DownArrowGameStrategy.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayNavigationStrategies\LeftArrowGameStrategy.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayNavigationStrategies\RightArrowGameStrategy.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayNavigationStrategies\UpArrowGameStrategy.cs" />
     <Compile Include="Core\Repository\PlayerXMLRepository.cs" />
     <Compile Include="Core\Services\Common\FileService.cs" />
     <Compile Include="Core\Services\Common\UserService.cs" />
@@ -90,14 +103,20 @@
     <Compile Include="Core\Game\SudokuGridGenerator.cs" />
     <Compile Include="Interfaces\Core\ICommand.cs" />
     <Compile Include="Interfaces\Core\IEngine.cs" />
+    <Compile Include="Interfaces\Factories\IAsciiFactoriesFactory.cs" />
+    <Compile Include="Interfaces\Factories\IAsciiFactory.cs" />
     <Compile Include="Interfaces\Factories\ICommandFactory.cs" />
+    <Compile Include="Interfaces\Factories\IFieldFactory.cs" />
     <Compile Include="Interfaces\Factories\IFilePathFactory.cs" />
+    <Compile Include="Interfaces\Factories\IGameFactory.cs" />
+    <Compile Include="Interfaces\Factories\IGameNavigationStrategyFactory.cs" />
     <Compile Include="Interfaces\Fasades\IGamePlayFasade.cs" />
     <Compile Include="Interfaces\Fasades\IGameSetUpFasade.cs" />
     <Compile Include="Interfaces\Game\IMenuNavigation.cs" />
     <Compile Include="Interfaces\Game\IMenuPagination.cs" />
     <Compile Include="Interfaces\Game\ISudokuGridGenerator.cs" />
     <Compile Include="Interfaces\Repository\IPlayerRepository.cs" />
+    <Compile Include="Interfaces\Strategies\IGameNavigationStrategy.cs" />
     <Compile Include="Interfaces\Strategies\IMenuNavigationStrategy.cs" />
     <Compile Include="Interfaces\Factories\IMenuNavigationStrategyFactory.cs" />
     <Compile Include="StartUp.cs" />

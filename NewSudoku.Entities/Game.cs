@@ -10,15 +10,15 @@
         private char[][] allBoardChars;
         private DateTime startTime;
         private DateTime endTime;
-        private List<Field> fields;
+        private Field[] fields;
 
-        public Game(string gameType, char[][] pattern, char[][] allBoardChars, DateTime startTime)
+        public Game(string gameType, char[][] pattern, char[][] allBoardChars, DateTime startTime, Field[] fields)
         {
             this.gameType = gameType;
             this.pattern = pattern;
             this.allBoardChars = allBoardChars;
             this.startTime = startTime;
-            this.fields = new List<Field>();
+            this.fields = this.fields = fields;
         }
 
         public string GameType
@@ -103,6 +103,11 @@
             }
 
             this.allBoardChars[positionY][positionX] = newChar;
+        }
+
+        public void UpdateFieldValue(int positionY, int positionX, char newValue)
+        {
+            throw new NotImplementedException(); // ToDo
         }
     }
 }
