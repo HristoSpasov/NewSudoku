@@ -1,107 +1,27 @@
 ﻿namespace NewSudoku.App.Core.Factories
 {
-    using System;
     using NewSudoku.App.Interfaces.Factories;
+    using NewSudoku.App.Interfaces.Strategies;
 
     public class AsciiNumberFactory : IAsciiFactory
     {
-        public char[,] GetAsciiCharacter(char ch)
+        private readonly IInGameNumberAsciiStrategyFactory inGameNumberAsciiStrategyFactory;
+
+        public AsciiNumberFactory(IInGameNumberAsciiStrategyFactory inGameNumberAsciiStrategyFactory)
         {
-            switch (ch)
+            this.inGameNumberAsciiStrategyFactory = inGameNumberAsciiStrategyFactory;
+        }
+
+        public char[,] GetAsciiCharacter(string charStr)
+        {
+            IInGameNumberAsciiStrategy concreteStrategy = this.inGameNumberAsciiStrategyFactory.GetStrategy(charStr);
+
+            if (concreteStrategy != null)
             {
-                case '0':
-                    return new char[,]
-                    {
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }
-                    };
-
-                case '1':
-                    return new char[,]
-                        {
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                            { ' ', ' ', ' ', '/', '|', ' ', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }
-                        };
-
-                case '2':
-                    return new char[,]
-                        {
-                            { ' ', ' ', ' ', '_', '_', ' ', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', '_', ')', ' ', ' ' },
-                            { ' ', ' ', ' ', '/', '_', '_', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }
-                        };
-
-                case '3':
-                    return new char[,]
-                        {
-                            { ' ', ' ', ' ', '_', '_', ' ', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', '_', ')', ' ', ' ' },
-                            { ' ', ' ', ' ', '_', '_', ')', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }
-                        };
-
-                case '4':
-                    return new char[,]
-                        {
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                            { ' ', ' ', '|', '_', '_', '|', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }
-                        };
-
-                case '5':
-                    return new char[,]
-                        {
-                            { ' ', ' ', ' ', ' ', '_', '_', ' ', ' ' },
-                            { ' ', ' ', ' ', '|', '_', ' ', ' ', ' ' },
-                            { ' ', ' ', ' ', '_', '_', ')', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }
-                        };
-
-                case '6':
-                    return new char[,]
-                        {
-                            { ' ', ' ', ' ', '_', '_', ' ', ' ', ' ' },
-                            { ' ', ' ', '/', '_', '_', ' ', ' ', ' ' },
-                            { ' ', ' ', '\\', '_', '_', ')', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }
-                        };
-
-                case '7':
-                    return new char[,]
-                        {
-                            { ' ', ' ', ' ', '_', '_', '_', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', '/', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', '/', ' ', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }
-                        };
-
-                case '8':
-                    return new char[,]
-                        {
-                            { ' ', ' ', ' ', '_', '_', ' ', ' ', ' ' },
-                            { ' ', ' ', '(', '_', '_', ')', ' ', ' ' },
-                            { ' ', ' ', '(', '_', '_', ')', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }
-                        };
-
-                case '9':
-                    return new char[,]
-                        {
-                            { ' ', ' ', ' ', '_', '_', ' ', ' ', ' ' },
-                            { ' ', ' ', '(', '_', '_', '\\', ' ', ' ' },
-                            { ' ', ' ', ' ', '_', '_', '/', ' ', ' ' },
-                            { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }
-                        };
-
-                default:
-                    throw new ArgumentException("Factory can generate ascii only for digits from 0 to 9");
+                return concreteStrategy.GetNumberAscii();
             }
+
+            return null;
         }
     }
 }

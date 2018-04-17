@@ -5,6 +5,6 @@
 
     public interface IGameFactory
     {
-        Game Create(string gameType, char[][] pattern, char[][] board, DateTime startTime, Field[] fields);
+        Game Create(string gameType, char[][] pattern, char[][] board, DateTime startTime, Field[] fields, Button[] buttons);
     }
 }

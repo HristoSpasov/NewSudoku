@@ -47,6 +47,11 @@
             this.userSessionService.Logout();
         }
 
+        public void Update()
+        {
+            this.playerRepository.Update(this.userSessionService.User);
+        }
+
         private string readUsername()
         {
             string name = default(string);

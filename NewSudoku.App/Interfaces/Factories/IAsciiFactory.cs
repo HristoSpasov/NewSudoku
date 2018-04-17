@@ -2,6 +2,6 @@
 {
     public interface IAsciiFactory
     {
-        char[,] GetAsciiCharacter(char ch);
+        char[,] GetAsciiCharacter(string charStr);
     }
 }

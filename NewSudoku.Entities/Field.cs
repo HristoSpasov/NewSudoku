@@ -7,12 +7,12 @@
         private int minCol;
         private int minRow;
         private char[,] content;
-        private int value;
+        private char value;
         private bool isImmutable;
         private int boardRow;
         private int boardCol;
 
-        public Field(int minCol, int minRow, char[,] content, int value, bool isImmutable, int boardRow, int boardCol)
+        public Field(int minCol, int minRow, char[,] content, char value, bool isImmutable, int boardRow, int boardCol)
         {
             this.minCol = minCol;
             this.minRow = minRow;
@@ -23,7 +23,7 @@
             this.boardCol = boardCol;
         }
 
-        public int Value
+        public char Value
         {
             get
             {

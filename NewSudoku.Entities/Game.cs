@@ -9,16 +9,17 @@
         private char[][] pattern;
         private char[][] allBoardChars;
         private DateTime startTime;
-        private DateTime endTime;
         private Field[] fields;
+        private Button[] buttons;
 
-        public Game(string gameType, char[][] pattern, char[][] allBoardChars, DateTime startTime, Field[] fields)
+        public Game(string gameType, char[][] pattern, char[][] allBoardChars, DateTime startTime, Field[] fields, Button[] buttons)
         {
             this.gameType = gameType;
             this.pattern = pattern;
             this.allBoardChars = allBoardChars;
             this.startTime = startTime;
-            this.fields = this.fields = fields;
+            this.fields = fields;
+            this.buttons = buttons;
         }
 
         public string GameType
@@ -45,32 +46,6 @@
             }
         }
 
-        public DateTime StartTime
-        {
-            get
-            {
-                return this.startTime;
-            }
-        }
-
-        public DateTime EndTime
-        {
-            get
-            {
-                return this.endTime;
-            }
-
-            set
-            {
-                if (value < this.StartTime)
-                {
-                    throw new ArgumentException("End time cannot be before start time.");
-                }
-
-                this.endTime = value;
-            }
-        }
-
         public IReadOnlyCollection<Field> Fields
         {
             get
@@ -79,10 +54,28 @@
             }
         }
 
+        public IReadOnlyCollection<Button> Buttons
+        {
+            get
+            {
+                return this.buttons;
+            }
+        }
+
+        public bool IsRunning { get; set; }
+
+        public long GamePlaySeconds
+        {
+            get
+            {
+                return (long)DateTime.Now.Subtract(this.startTime).TotalSeconds;
+            }
+        }
+
         public char GetBoardChar(int positionX, int positionY)
         {
-            if (positionY < 0 || 
-                positionX < 0 || 
+            if (positionY < 0 ||
+                positionX < 0 ||
                 positionY > this.allBoardChars.Length - 1 ||
                 positionX > this.allBoardChars[positionY].Length - 1)
             {
@@ -103,11 +96,6 @@
             }
 
             this.allBoardChars[positionY][positionX] = newChar;
-        }
-
-        public void UpdateFieldValue(int positionY, int positionX, char newValue)
-        {
-            throw new NotImplementedException(); // ToDo
         }
     }
 }

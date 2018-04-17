@@ -32,6 +32,8 @@
             while (true)
             {
                 this.interfaceService.SetCanvasSize(ConsoleConstants.Width, ConsoleConstants.Height);
+                this.interfaceService.SetBackgroundColor(ConsoleConstants.BackgroundColor);
+                this.interfaceService.SetForegroundColor(ConsoleConstants.ForegroundColor);
 
                 if (!this.userSessionService.IsLoggedIn())
                 {
@@ -46,6 +48,7 @@
                 {
                     ICommand command = this.commandFactory.Create(this.currentOption);
                     command.Execute(this.currentOption);
+                    this.currentOption = "Main Menu";
                 }
             }
         }

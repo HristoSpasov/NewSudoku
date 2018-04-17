@@ -12,8 +12,6 @@
 
     public class GameSetUpFasade : IGameSetUpFasade
     {
-        private readonly ISudokuGridGenerator sudokuGridGenerator;
-        private readonly IFilePathFactory filePathFactory;
         private readonly IUserService userService;
         private readonly IUserSessionService userSessionService;
         private readonly IGameFactory gameFactory;
@@ -21,11 +19,10 @@
         private readonly IWriterService writerService;
         private readonly IAsciiFactoriesFactory asciiFactoriesFactory;
         private readonly IFieldFactory fieldFactory;
+        private readonly IButtonFactory buttonFactory;
 
-        public GameSetUpFasade(IFilePathFactory filePathFactory, ISudokuGridGenerator sudokuGridGenerator, IUserService userService, IUserSessionService userSessionService, IGameFactory gameFactory, IInterfaceService interfaceService, IWriterService writerService, IAsciiFactoriesFactory asciiFactoriesFactory, IFieldFactory fieldFactory)
+        public GameSetUpFasade(IUserService userService, IUserSessionService userSessionService, IGameFactory gameFactory, IInterfaceService interfaceService, IWriterService writerService, IAsciiFactoriesFactory asciiFactoriesFactory, IFieldFactory fieldFactory, IButtonFactory buttonFactory)
         {
-            this.sudokuGridGenerator = sudokuGridGenerator;
-            this.filePathFactory = filePathFactory;
             this.userSessionService = userSessionService;
             this.userService = userService;
             this.gameFactory = gameFactory;
@@ -33,17 +30,19 @@
             this.writerService = writerService;
             this.asciiFactoriesFactory = asciiFactoriesFactory;
             this.fieldFactory = fieldFactory;
+            this.buttonFactory = buttonFactory;
         }
 
-        public bool SetUpGame(string gameType)
+        public bool SetUpGame(string gameType, char[][] pattern)
         {
-            char[][] pattern = this.getGrid(gameType); // Get random pattern
-            char[][] board = this.getBoard(); // Read board 
+            char[][] board = this.getBoard(); // Read board
 
             Field[] fields = this.generateFields(gameType, pattern); // Generate field objects
             this.mapFieldDataToBoard(board, fields); // Map field content to board content
 
-            Game newGame = this.gameFactory.Create(gameType, pattern, board, DateTime.Now, fields);
+            Button[] buttons = this.generateButtons(); // Generate button data
+
+            Game newGame = this.gameFactory.Create(gameType, pattern, board, DateTime.Now, fields, buttons);
             this.userSessionService.User.SetGame(newGame); // Set the instance of a game
 
             this.drawBoard(board); // Draw board
@@ -61,6 +60,15 @@
                     this.writerService.WriteChar(board[row][col]);
                 }
             }
+        }
+
+        private Button[] generateButtons()
+        {
+            Button checkButton = this.buttonFactory.Create(ButtonsConstants.CheckId, ButtonsConstants.CheckMinCol, ButtonsConstants.CheckMinRow, ButtonsConstants.CheckMaxCol, ButtonsConstants.CheckMaxRow);
+            Button solutionkButton = this.buttonFactory.Create(ButtonsConstants.SolutionId, ButtonsConstants.SolutionMinCol, ButtonsConstants.SolutionMinRow, ButtonsConstants.SolutionMaxCol, ButtonsConstants.SolutionMaxRow);
+            Button exitButton = this.buttonFactory.Create(ButtonsConstants.ExitId, ButtonsConstants.ExitMinCol, ButtonsConstants.ExitMinRow, ButtonsConstants.ExitMaxCol, ButtonsConstants.ExitMaxRow);
+
+            return new Button[] { checkButton, solutionkButton, exitButton };
         }
 
         private void mapFieldDataToBoard(char[][] board, Field[] fields)
@@ -102,7 +110,7 @@
 
                 for (int col = 0; col < generatedSudoku[row].Length; col++)
                 {
-                    char[,] asciiSymbol = asciiFactory.GetAsciiCharacter(generatedSudoku[row][col]);
+                    char[,] asciiSymbol = asciiFactory.GetAsciiCharacter(generatedSudoku[row][col].ToString());
                     Field newField = this.fieldFactory.Create(topLeftFieldStartCol, topLeftFieldStartRow, asciiSymbol, generatedSudoku[row][col], generatedSudoku[row][col] != '0', row, col);
 
                     if (newField.Value == 0)
@@ -138,26 +146,6 @@
             }
 
             return board;
-        }
-
-        private char[][] getGrid(string gameType)
-        {
-            string allPatternsPath = this.filePathFactory.CreatePath(gameType); // Get path to corresponding game patterns
-
-            string[] patterns = Directory.GetFiles(allPatternsPath);
-
-            int patternId = this.getRandomId(patterns.Length);
-            string patternPath = Path.GetFullPath(Path.Combine(allPatternsPath, patterns[patternId]));
-
-            return this.sudokuGridGenerator.Generate(patternPath);
-        }
-
-        private int getRandomId(int length)
-        {
-            Random rnd = new Random();
-            int randomNum = rnd.Next(0, length);
-
-            return randomNum;
         }
     }
 }

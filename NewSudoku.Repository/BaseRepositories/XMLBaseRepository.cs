@@ -61,7 +61,8 @@
                 List<IEntity<TKey>> items = this.getCastedItems();
                 items.Remove(items.SingleOrDefault(f => f.Id.Equals(imodel.Id)));
                 items.Add(imodel);
-                this.context.Data = (ICollection<TEntity>)items;
+                var castedItems = items.Select(e => e as TEntity).ToList();
+                this.context.Data = castedItems;
                 return true;
             }
             catch (Exception)

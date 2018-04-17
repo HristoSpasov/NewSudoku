@@ -5,5 +5,7 @@
         string Login();
 
         void Logout();
+
+        void Update();
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IGameSetUpFasade
     {
-        bool SetUpGame(string gameType);
+        bool SetUpGame(string gameType, char[][] pattern);
     }
 }

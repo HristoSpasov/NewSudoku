@@ -2,6 +2,6 @@
 {
     public interface IGamePlayFasade
     {
-        void Play();
+        void Play(string gameType);
     }
 }

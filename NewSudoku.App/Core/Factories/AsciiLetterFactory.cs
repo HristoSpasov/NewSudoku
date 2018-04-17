@@ -4,7 +4,7 @@
 
     public class AsciiLetterFactory : IAsciiFactory
     {
-        public char[,] GetAsciiCharacter(char ch)
+        public char[,] GetAsciiCharacter(string ch)
         {
             throw new System.NotImplementedException();
         }

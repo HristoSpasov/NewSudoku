@@ -22,6 +22,8 @@
 
         public int TotalGamesPlayed { get; set; }
 
+        public long TotalTimePlayed { get; set; }
+
         public Game Game
         {
             get
@@ -33,6 +35,11 @@
         public void SetGame(Game game)
         {
             this.game = game;
+        }
+
+        public override string ToString()
+        {
+            return $"{this.Id} - {this.Points} - {this.TotalGamesPlayed} - {this.TotalTimePlayed}";
         }
     }
 }
