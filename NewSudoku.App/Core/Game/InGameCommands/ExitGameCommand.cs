@@ -28,7 +28,7 @@
             this.writerService.Write(ButtonsConstants.ExitPromptMessage);
             string pressedKey = this.readerService.ReadKeyboardInput();
 
-            if(pressedKey.ToLower() == "y")
+            if (pressedKey.ToLower() == "y")
             {
                 this.userSessionService.User.TotalGamesPlayed++;
                 this.userSessionService.User.TotalTimePlayed += this.userSessionService.User.Game.GamePlaySeconds;

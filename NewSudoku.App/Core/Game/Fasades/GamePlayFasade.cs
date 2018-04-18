@@ -104,6 +104,10 @@
                     this.updateBoard(fieldMatch);
                     this.drawNewField(fieldMatch);
                 }
+                else
+                {
+                    // ToDo If no strategy is registered in di container
+                }
 
                 this.setDefaultColors();
                 this.clearUserPrompt();

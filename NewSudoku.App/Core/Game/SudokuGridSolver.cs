@@ -3,10 +3,17 @@
     using System.Collections.Generic;
     using NewSudoku.App.Constants;
     using NewSudoku.App.Interfaces.Game;
+    using NewSudoku.Services.Interfaces;
 
     public class SudokuGridSolver : ISudokuGridSolver
     {
+        private readonly IUserSessionService userSessionService;
         private char[][] grid;
+
+        public SudokuGridSolver(IUserSessionService userSessionService)
+        {
+            this.userSessionService = userSessionService;
+        }
 
         public IReadOnlyCollection<char[]> GetGrid
         {
@@ -29,11 +36,11 @@
                 {
                     if (this.grid[row][col] == '0')
                     {
-                        for (int num = SudokuConstants.MinNum; num <= SudokuConstants.MaxNum; num++)
+                        foreach (char ch in this.userSessionService.User.Game.AvailavleChars)
                         {
-                            if (this.isSafe(row, col, char.Parse(num.ToString())))
+                            if (this.isSafe(row, col, ch))
                             {
-                                this.grid[row][col] = char.Parse(num.ToString());
+                                this.grid[row][col] = ch;
 
                                 if (this.SolveSudoku(grid))
                                 {

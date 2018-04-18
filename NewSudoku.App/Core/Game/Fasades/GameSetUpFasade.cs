@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using NewSudoku.App.Constants;
     using NewSudoku.App.Interfaces.Factories;
     using NewSudoku.App.Interfaces.Fasades;
-    using NewSudoku.App.Interfaces.Game;
     using NewSudoku.Entities;
     using NewSudoku.Services.Interfaces;
 
@@ -37,12 +37,15 @@
         {
             char[][] board = this.getBoard(); // Read board
 
+            char[] availableCharsForPlay = this.getAvailableChars(pattern); // Read pattern and find all available chars for playing
+            this.mapAvailableCharsOnBoard(board, availableCharsForPlay);
+
             Field[] fields = this.generateFields(gameType, pattern); // Generate field objects
             this.mapFieldDataToBoard(board, fields); // Map field content to board content
 
             Button[] buttons = this.generateButtons(); // Generate button data
 
-            Game newGame = this.gameFactory.Create(gameType, pattern, board, DateTime.Now, fields, buttons);
+            Game newGame = this.gameFactory.Create(gameType, pattern, availableCharsForPlay, board, DateTime.Now, fields, buttons);
             this.userSessionService.User.SetGame(newGame); // Set the instance of a game
 
             this.drawBoard(board); // Draw board
@@ -126,6 +129,36 @@
             }
 
             return fields.ToArray();
+        }
+
+        private void mapAvailableCharsOnBoard(char[][] board, char[] availableCharsForPlay)
+        {
+            int startRow = BoardConstants.AvailableCharsRow;
+            int startCol = BoardConstants.AvailableCharsCol;
+
+            foreach (char ch in string.Join(", ", availableCharsForPlay))
+            {
+                board[startRow][startCol] = ch;
+                startCol++;
+            }
+        }
+
+        private char[] getAvailableChars(char[][] pattern)
+        {
+            HashSet<char> uniqueGameChars = new HashSet<char>();
+
+            foreach (char[] row in pattern)
+            {
+                foreach (char ch in row)
+                {
+                    uniqueGameChars.Add(ch);
+                }
+            }
+
+            return uniqueGameChars
+                .Where(e => e != '0')
+                .OrderBy(c => c)
+                .ToArray();
         }
 
         private char[][] getBoard()

@@ -8,6 +8,7 @@
     using NewSudoku.App.Core.Game;
     using NewSudoku.App.Core.Game.Fasades;
     using NewSudoku.App.Core.Game.InGameCommands;
+    using NewSudoku.App.Core.Game.Strategies.GamePlayLetterAsciiStrategies;
     using NewSudoku.App.Core.Game.Strategies.GamePlayNavigationStrategies;
     using NewSudoku.App.Core.Game.Strategies.GamePlayNumberAsciiStrategy;
     using NewSudoku.App.Core.Game.Strategies.GamePlayValueStrategies;
@@ -62,6 +63,7 @@
             dependencyContainer.RegisterType<ISudokuGridSolver, SudokuGridSolver>();
             dependencyContainer.RegisterType<INavigationService, ConsoleNavigationService>();
             dependencyContainer.RegisterType<IInGameNumberAsciiStrategyFactory, InGameNumberAsciiStrategyFactory>();
+            dependencyContainer.RegisterType<IInGameLetterAsciiStrategyFactory, InGameLetterAsciiStrategyFactory>();
 
             // Fasade dependencies
             dependencyContainer.RegisterType<IGamePlayFasade, GamePlayFasade>();
@@ -105,7 +107,7 @@
             dependencyContainer.RegisterType<IGameNavigationStrategy, LeftArrowGameStrategy>("LeftArrow");
             dependencyContainer.RegisterType<IGameNavigationStrategy, RightArrowGameStrategy>("RightArrow");
 
-            // Ascii strategies
+            // Ascii number strategies
             dependencyContainer.RegisterType<IInGameNumberAsciiStrategy, InGameNumberAsciiStrategy0>("0");
             dependencyContainer.RegisterType<IInGameNumberAsciiStrategy, InGameNumberAsciiStrategy1>("1");
             dependencyContainer.RegisterType<IInGameNumberAsciiStrategy, InGameNumberAsciiStrategy2>("2");
@@ -116,6 +118,18 @@
             dependencyContainer.RegisterType<IInGameNumberAsciiStrategy, InGameNumberAsciiStrategy7>("7");
             dependencyContainer.RegisterType<IInGameNumberAsciiStrategy, InGameNumberAsciiStrategy8>("8");
             dependencyContainer.RegisterType<IInGameNumberAsciiStrategy, InGameNumberAsciiStrategy9>("9");
+
+            // Ascii letter strategies
+            dependencyContainer.RegisterType<IInGameLetterAsciiStrategy, InGameLetterAsciiStrategyC>("C");
+            dependencyContainer.RegisterType<IInGameLetterAsciiStrategy, InGameLetterAsciiStrategyE>("E");
+            dependencyContainer.RegisterType<IInGameLetterAsciiStrategy, InGameLetterAsciiStrategyG>("G");
+            dependencyContainer.RegisterType<IInGameLetterAsciiStrategy, InGameLetterAsciiStrategyI>("I");
+            dependencyContainer.RegisterType<IInGameLetterAsciiStrategy, InGameLetterAsciiStrategyN>("N");
+            dependencyContainer.RegisterType<IInGameLetterAsciiStrategy, InGameLetterAsciiStrategyO>("O");
+            dependencyContainer.RegisterType<IInGameLetterAsciiStrategy, InGameLetterAsciiStrategyS>("S");
+            dependencyContainer.RegisterType<IInGameLetterAsciiStrategy, InGameLetterAsciiStrategyT>("T");
+            dependencyContainer.RegisterType<IInGameLetterAsciiStrategy, InGameLetterAsciiStrategyV>("V");
+            dependencyContainer.RegisterType<IInGameLetterAsciiStrategy, InGameLetterAsciiStrategy0>("0");
 
             // Value strategies
             dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategy0>("0");
@@ -128,6 +142,15 @@
             dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategy7>("7");
             dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategy8>("8");
             dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategy9>("9");
+            dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategyC>("C");
+            dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategyE>("E");
+            dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategyG>("G");
+            dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategyI>("I");
+            dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategyN>("N");
+            dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategyO>("O");
+            dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategyS>("S");
+            dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategyT>("T");
+            dependencyContainer.RegisterType<IGameValueStrategy, GameValueStrategyV>("V");
 
             // Register container
             dependencyContainer.RegisterInstance(dependencyContainer);

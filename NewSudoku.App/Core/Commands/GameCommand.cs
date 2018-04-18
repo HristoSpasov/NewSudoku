@@ -1,7 +1,6 @@
 ﻿namespace NewSudoku.App.Core.Commands
 {
     using System;
-    using NewSudoku.App.Constants;
     using NewSudoku.App.Interfaces.Core;
     using NewSudoku.App.Interfaces.Fasades;
 

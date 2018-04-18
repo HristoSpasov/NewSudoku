@@ -6,9 +6,9 @@
 
     public class GameFactory : IGameFactory
     {
-        public Game Create(string gameType, char[][] pattern, char[][] board, DateTime startTime, Field[] fields, Button[] buttons)
+        public Game Create(string gameType, char[][] pattern, char[] availableChars, char[][] board, DateTime startTime, Field[] fields, Button[] buttons)
         {
-            return new Game(gameType, pattern, board, startTime, fields, buttons);
+            return new Game(gameType, pattern, availableChars, board, startTime, fields, buttons);
         }
     }
 }

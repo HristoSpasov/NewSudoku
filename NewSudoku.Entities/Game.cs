@@ -7,15 +7,17 @@
     {
         private string gameType;
         private char[][] pattern;
+        private char[] availableCharsForPlay;
         private char[][] allBoardChars;
         private DateTime startTime;
         private Field[] fields;
         private Button[] buttons;
 
-        public Game(string gameType, char[][] pattern, char[][] allBoardChars, DateTime startTime, Field[] fields, Button[] buttons)
+        public Game(string gameType, char[][] pattern, char[] availableCharsForPlay, char[][] allBoardChars, DateTime startTime, Field[] fields, Button[] buttons)
         {
             this.gameType = gameType;
             this.pattern = pattern;
+            this.availableCharsForPlay = availableCharsForPlay;
             this.allBoardChars = allBoardChars;
             this.startTime = startTime;
             this.fields = fields;
@@ -35,6 +37,14 @@
             get
             {
                 return this.pattern;
+            }
+        }
+
+        public IReadOnlyCollection<char> AvailavleChars
+        {
+            get
+            {
+                return this.availableCharsForPlay;
             }
         }
 

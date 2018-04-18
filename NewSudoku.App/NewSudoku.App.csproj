@@ -90,6 +90,7 @@
     <Compile Include="Core\Factories\GameFactory.cs" />
     <Compile Include="Core\Factories\GameNavigationStrategyFactory.cs" />
     <Compile Include="Core\Factories\InGameCommandFactory.cs" />
+    <Compile Include="Core\Factories\InGameLetterAsciiStrategyFactory.cs" />
     <Compile Include="Core\Factories\InGameNumberAsciiStrategyFactory.cs" />
     <Compile Include="Core\Factories\InGameValueStrategyFactory.cs" />
     <Compile Include="Core\Game\Fasades\GamePlayFasade.cs" />
@@ -97,6 +98,16 @@
     <Compile Include="Core\Game\InGameCommands\CheckGameCommand.cs" />
     <Compile Include="Core\Game\InGameCommands\ExitGameCommand.cs" />
     <Compile Include="Core\Game\InGameCommands\SolutionGameCommand.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayLetterAsciiStrategies\InGameLetterAsciiStrategy0.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayLetterAsciiStrategies\InGameLetterAsciiStrategyC.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayLetterAsciiStrategies\InGameLetterAsciiStrategyE.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayLetterAsciiStrategies\InGameLetterAsciiStrategyG.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayLetterAsciiStrategies\InGameLetterAsciiStrategyI.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayLetterAsciiStrategies\InGameLetterAsciiStrategyN.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayLetterAsciiStrategies\InGameLetterAsciiStrategyO.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayLetterAsciiStrategies\InGameLetterAsciiStrategyS.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayLetterAsciiStrategies\InGameLetterAsciiStrategyT.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayLetterAsciiStrategies\InGameLetterAsciiStrategyV.cs" />
     <Compile Include="Core\Game\Strategies\GamePlayNavigationStrategies\DownArrowGameStrategy.cs" />
     <Compile Include="Core\Game\Strategies\GamePlayNavigationStrategies\LeftArrowGameStrategy.cs" />
     <Compile Include="Core\Game\Strategies\GamePlayNavigationStrategies\RightArrowGameStrategy.cs" />
@@ -121,6 +132,15 @@
     <Compile Include="Core\Game\Strategies\GamePlayValueStrategies\GameValueStrategy7.cs" />
     <Compile Include="Core\Game\Strategies\GamePlayValueStrategies\GameValueStrategy8.cs" />
     <Compile Include="Core\Game\Strategies\GamePlayValueStrategies\GameValueStrategy9.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayValueStrategies\GameValueStrategyC.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayValueStrategies\GameValueStrategyE.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayValueStrategies\GameValueStrategyG.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayValueStrategies\GameValueStrategyI.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayValueStrategies\GameValueStrategyN.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayValueStrategies\GameValueStrategyO.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayValueStrategies\GameValueStrategyS.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayValueStrategies\GameValueStrategyT.cs" />
+    <Compile Include="Core\Game\Strategies\GamePlayValueStrategies\GameValueStrategyV.cs" />
     <Compile Include="Core\Game\SudokuGridSolver.cs" />
     <Compile Include="Core\Repository\PlayerXMLRepository.cs" />
     <Compile Include="Core\Services\Common\FileService.cs" />
@@ -149,6 +169,7 @@
     <Compile Include="Interfaces\Factories\IGameFactory.cs" />
     <Compile Include="Interfaces\Factories\IGameNavigationStrategyFactory.cs" />
     <Compile Include="Interfaces\Factories\IInGameCommandFactory.cs" />
+    <Compile Include="Interfaces\Factories\IInGameLetterAsciiStrategyFactory.cs" />
     <Compile Include="Interfaces\Factories\IInGameNumberAsciiStrategyFactory.cs" />
     <Compile Include="Interfaces\Factories\IInGameValueStrategyFactory.cs" />
     <Compile Include="Interfaces\Fasades\IGamePlayFasade.cs" />
@@ -162,6 +183,7 @@
     <Compile Include="Interfaces\Repository\IPlayerRepository.cs" />
     <Compile Include="Interfaces\Strategies\IGameNavigationStrategy.cs" />
     <Compile Include="Interfaces\Strategies\IGameValueStrategy.cs" />
+    <Compile Include="Interfaces\Strategies\IInGameLetterAsciiStrategy.cs" />
     <Compile Include="Interfaces\Strategies\IInGameNumberAsciiStrategy.cs" />
     <Compile Include="Interfaces\Strategies\IMenuNavigationStrategy.cs" />
     <Compile Include="Interfaces\Factories\IMenuNavigationStrategyFactory.cs" />
